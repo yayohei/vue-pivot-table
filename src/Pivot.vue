@@ -79,7 +79,7 @@
 
       <!-- Table -->
       <div class="flex-fill" :style="tableWrapperStyle">
-        <pivot-table :data="data" :row-fields="internal.rowFields" :col-fields="internal.colFields" :reducer="reducer" :no-data-warning-text="noDataWarningText" :is-data-loading="isDataLoading">
+        <pivot-table :data="data" :row-fields="internal.rowFields" :col-fields="internal.colFields" :reducerFields="reducerFields" :no-data-warning-text="noDataWarningText" :is-data-loading="isDataLoading">
           <!-- pass down scoped slots -->
           <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"><slot :name="slot" v-bind="scope"/></template>
         </pivot-table>
@@ -112,9 +112,9 @@ export default {
       type: Array,
       default: []
     },
-    reducer: {
-      type: Function,
-      default: (sum, item) => sum + 1
+    reducerFields: {
+      type: Array,
+      default: []
     },
     defaultShowSettings: {
       type: Boolean,

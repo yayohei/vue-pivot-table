@@ -10,7 +10,7 @@
         :fields="fields"
         :row-fields="rowFields"
         :col-fields="colFields"
-        :reducer="reducer"
+        :reducerFields="reducerFields"
         :default-show-settings="defaultShowSettings"
       >
         <template v-slot:value="{ value }">
@@ -45,7 +45,7 @@
         :data="asyncData"
         :row-fields="rowFields"
         :col-fields="colFields"
-        :reducer="reducer"
+        :reducerFields="reducerFields"
         :default-show-settings="defaultShowSettings"
         :is-data-loading="isDataLoading"
       >
@@ -105,11 +105,20 @@ export default {
         label: 'Gender',
         headerSlotName: 'genderHeader'
       }],
-      colFields: [{
-        getter: item => item.year,
-        label: 'Year'
+      colFields: [
+//        {
+//          getter: item => item.year,
+//          label: 'Year'
+//        }
+      ],
+      reducerFields: [{
+        label: 'sum(count)',
+        reducer: (sum, item) => sum + item.count
+      },
+      {
+        label: 'sum(point)',
+        reducer: (sum, item) => sum + item.point
       }],
-      reducer: (sum, item) => sum + item.count,
       defaultShowSettings: true,
       isDataLoading: false
     }
